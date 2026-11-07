@@ -1,0 +1,24 @@
+post:
+  tags:
+    - Auth
+  summary: Register User
+  description: Create a new user account.
+  operationId: register
+  security: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/auth.yaml#/RegisterRequest
+  responses:
+    "201":
+      $ref: ../components/responses/auth.yaml#/AuthSuccess
+    "400":
+      $ref: ../components/responses/_common.yaml#/BadRequestError
+    "409":
+      $ref: ../components/responses/_common.yaml#/ConflictError
+    "422":
+      $ref: ../components/responses/_common.yaml#/ValidationError
+    "500":
+      $ref: ../components/responses/_common.yaml#/InternalServerError

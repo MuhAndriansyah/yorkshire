@@ -1,0 +1,6 @@
+AuthSuccess:
+  description: Authentication success.
+  content:
+    application/json:
+      schema:
+        $ref: ../schemas/auth.yaml#/AuthResponse

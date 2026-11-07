@@ -1,0 +1,73 @@
+SuccessBase:
+  type: object
+  required:
+    - status
+  properties:
+    status:
+      type: boolean
+      example: true
+
+ErrorBase:
+  type: object
+  required:
+    - status
+    - message
+  properties:
+    status:
+      type: boolean
+      example: false
+    message:
+      type: string
+      example: invalid request payload
+
+ValidationError:
+  allOf:
+    - $ref: "#/ErrorBase"
+    - type: object
+      required:
+        - errors
+      properties:
+        errors:
+          type: object
+          additionalProperties:
+            type: string
+
+OffsetPagination:
+  type: object
+  required:
+    - page
+    - total_page
+    - limit
+    - total_item
+  properties:
+    page:
+      type: integer
+      example: 1
+    total_page:
+      type: integer
+      example: 3
+    limit:
+      type: integer
+      example: 10
+    total_item:
+      type: integer
+      example: 23
+
+CursorPagination:
+  type: object
+  required:
+    - limit
+    - has_more
+  properties:
+    next_cursor:
+      type: string
+      example: eyJpZCI6IjBkNDVhNTA3LTdjN2UtNGJiMy05NGRkLTFmODczZTBiNDNmNiJ9
+    prev_cursor:
+      type: string
+      example: eyJpZCI6IjBkNDVhNTA3LTdjN2UtNGJiMy05NGRkLTFmODczZTBiNDNmNSJ9
+    limit:
+      type: integer
+      example: 10
+    has_more:
+      type: boolean
+      example: true

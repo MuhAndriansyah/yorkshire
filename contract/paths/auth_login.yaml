@@ -1,0 +1,24 @@
+post:
+  tags:
+    - Auth
+  summary: Login User
+  description: Authenticate an existing user and return an access token.
+  operationId: login
+  security: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/auth.yaml#/LoginRequest
+  responses:
+    "200":
+      $ref: ../components/responses/auth.yaml#/AuthSuccess
+    "400":
+      $ref: ../components/responses/_common.yaml#/BadRequestError
+    "401":
+      $ref: ../components/responses/_common.yaml#/UnauthorizedError
+    "422":
+      $ref: ../components/responses/_common.yaml#/ValidationError
+    "500":
+      $ref: ../components/responses/_common.yaml#/InternalServerError

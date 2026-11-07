@@ -1,0 +1,10 @@
+package: api
+
+generate:
+  chi-server: true
+  models: true
+
+output-options:
+  name-normalizer: ToCamelCaseWithInitialisms
+  
+output: internal/api/api.gen.go

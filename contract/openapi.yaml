@@ -1,0 +1,85 @@
+openapi: 3.0.3
+info:
+  title: Yorkshire API
+  description: API documentation for Yorkshire service
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://apache.org
+
+servers:
+  - url: "{scheme}://{environment}/api/v1"
+    description: Environment server
+    variables:
+      scheme:
+        default: http
+        enum:
+          - http
+          - https
+      environment:
+        default: localhost:8080
+        enum:
+          - localhost:8080
+          - api-staging.your-domain.com
+          - api.your-domain.com
+
+tags:
+  - name: Auth
+    description: Authentication management
+
+paths:
+  /auth/register:
+    $ref: ./paths/auth_register.yaml
+  /auth/login:
+    $ref: ./paths/auth_login.yaml
+
+components:
+  securitySchemes:
+    bearerAuth:
+      $ref: ./components/securitySchemes/bearerAuth.yaml
+
+  parameters:
+    PageParam:
+      $ref: ./components/parameters/_common.yaml#/PageParam
+    LimitParam:
+      $ref: ./components/parameters/_common.yaml#/LimitParam
+
+  schemas:
+    SuccessBase:
+      $ref: ./components/schemas/_common.yaml#/SuccessBase
+    ErrorBase:
+      $ref: ./components/schemas/_common.yaml#/ErrorBase
+    ValidationError:
+      $ref: ./components/schemas/_common.yaml#/ValidationError
+    OffsetPagination:
+      $ref: ./components/schemas/_common.yaml#/OffsetPagination
+    CursorPagination:
+      $ref: ./components/schemas/_common.yaml#/CursorPagination
+    RegisterRequest:
+      $ref: ./components/schemas/auth.yaml#/RegisterRequest
+    LoginRequest:
+      $ref: ./components/schemas/auth.yaml#/LoginRequest
+    AuthUser:
+      $ref: ./components/schemas/auth.yaml#/AuthUser
+    AuthToken:
+      $ref: ./components/schemas/auth.yaml#/AuthToken
+    AuthData:
+      $ref: ./components/schemas/auth.yaml#/AuthData
+    AuthResponse:
+      $ref: ./components/schemas/auth.yaml#/AuthResponse
+
+  responses:
+    BadRequestError:
+      $ref: ./components/responses/_common.yaml#/BadRequestError
+    NotFoundError:
+      $ref: ./components/responses/_common.yaml#/NotFoundError
+    UnauthorizedError:
+      $ref: ./components/responses/_common.yaml#/UnauthorizedError
+    ConflictError:
+      $ref: ./components/responses/_common.yaml#/ConflictError
+    ValidationError:
+      $ref: ./components/responses/_common.yaml#/ValidationError
+    InternalServerError:
+      $ref: ./components/responses/_common.yaml#/InternalServerError
+    AuthSuccess:
+      $ref: ./components/responses/auth.yaml#/AuthSuccess
